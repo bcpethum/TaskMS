@@ -1,8 +1,8 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { User } from '../types/auth';
-import { authService } from '../services/authService';
+import { User } from '@/types/auth';
+import { authService } from '@/services/authService';
 
 // Decode JWT payload to check expiry (no library needed)
 const isTokenExpired = (token: string): boolean => {

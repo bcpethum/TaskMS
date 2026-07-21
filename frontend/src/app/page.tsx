@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 
 export default function RootPage() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -10,20 +10,14 @@ export default function RootPage() {
 
   useEffect(() => {
     if (!isLoading) {
-      if (isAuthenticated) {
-        router.push('/dashboard');
-      } else {
-        router.push('/login');
-      }
+      router.replace(isAuthenticated ? '/dashboard' : '/login');
     }
   }, [isAuthenticated, isLoading, router]);
 
+  // Minimal loading indicator — auth check is almost instant
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 text-white">
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-10 h-10 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-slate-400 text-sm">Redirecting...</p>
-      </div>
+    <div className="min-h-screen flex items-center justify-center bg-slate-950">
+      <div className="w-8 h-8 border-3 border-sky-500 border-t-transparent rounded-full animate-spin opacity-60" />
     </div>
   );
 }
