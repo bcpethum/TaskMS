@@ -28,4 +28,10 @@ app.use((req: Request, res: Response) => {
   sendError(res, 404, `Route ${req.originalUrl} not found`);
 });
 
+// Global 500 Error Handler
+app.use((err: any, _req: Request, res: Response, _next: express.NextFunction) => {
+  console.error('Unhandled Server Error:', err);
+  sendError(res, 500, err.message || 'An unexpected internal server error occurred');
+});
+
 export default app;

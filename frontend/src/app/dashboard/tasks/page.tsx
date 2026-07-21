@@ -123,20 +123,20 @@ export default function TasksPage() {
 
   // ─── Render ──────────────────────────────────────────────────
   return (
-    <div className="p-4 md:p-8 max-w-6xl mx-auto">
+    <div className="p-4 md:p-8 w-full">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2 mb-0.5">
-            <ListTodo className="w-5 h-5 text-sky-400" />
-            <h1 className="text-xl font-bold text-white">Tasks</h1>
+            <ListTodo className="w-5 h-5 text-sky-500 dark:text-sky-400" />
+            <h1 className="text-xl font-bold text-slate-900 dark:text-white">Tasks</h1>
             {!isLoading && (
-              <span className="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full">
+              <span className="text-xs bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-400 px-2 py-0.5 rounded-full font-medium">
                 {tasks.length}
               </span>
             )}
           </div>
-          <p className="text-slate-500 text-sm">Manage and track your tasks</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm">Manage and track your tasks</p>
         </div>
         <button
           onClick={handleOpenCreate}
@@ -148,21 +148,21 @@ export default function TasksPage() {
       </div>
 
       {/* Search + Filters */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 mb-5 space-y-3">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 mb-5 space-y-3 shadow-sm transition-colors">
         {/* Search Bar */}
         <div className="relative">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-slate-500" />
           <input
             type="text"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search tasks by title..."
-            className="w-full pl-10 pr-10 py-2.5 bg-slate-950/60 border border-slate-800 focus:border-sky-500 rounded-xl text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all"
+            className="w-full pl-10 pr-10 py-2.5 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 focus:border-sky-500 rounded-xl text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all"
           />
           {searchInput && (
             <button
               onClick={() => setSearchInput('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-200"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-200"
             >
               <X className="w-4 h-4" />
             </button>
@@ -171,21 +171,21 @@ export default function TasksPage() {
 
         {/* Filter Row */}
         <div className="flex flex-wrap items-center gap-2">
-          <SlidersHorizontal className="w-4 h-4 text-slate-500 shrink-0" />
+          <SlidersHorizontal className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
 
           {/* Status Filter */}
           <div className="relative">
             <select
               value={filters.status}
               onChange={(e) => setFilters((prev) => ({ ...prev, status: e.target.value as TaskStatus | '' }))}
-              className="appearance-none pl-3 pr-7 py-1.5 bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium rounded-lg focus:outline-none focus:border-sky-500 cursor-pointer"
+              className="appearance-none pl-3 pr-7 py-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-medium rounded-lg focus:outline-none focus:border-sky-500 cursor-pointer"
             >
-              <option value="">All Statuses</option>
+              <option value="" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">All Statuses</option>
               {STATUS_OPTIONS.filter(Boolean).map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s} value={s} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">{s}</option>
               ))}
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-500 pointer-events-none" />
+            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 dark:text-slate-500 pointer-events-none" />
           </div>
 
           {/* Priority Filter */}
@@ -193,14 +193,14 @@ export default function TasksPage() {
             <select
               value={filters.priority}
               onChange={(e) => setFilters((prev) => ({ ...prev, priority: e.target.value as PriorityLevel | '' }))}
-              className="appearance-none pl-3 pr-7 py-1.5 bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium rounded-lg focus:outline-none focus:border-sky-500 cursor-pointer"
+              className="appearance-none pl-3 pr-7 py-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-medium rounded-lg focus:outline-none focus:border-sky-500 cursor-pointer"
             >
-              <option value="">All Priorities</option>
+              <option value="" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">All Priorities</option>
               {PRIORITY_OPTIONS.filter(Boolean).map((p) => (
-                <option key={p} value={p}>{p}</option>
+                <option key={p} value={p} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">{p}</option>
               ))}
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-500 pointer-events-none" />
+            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 dark:text-slate-500 pointer-events-none" />
           </div>
 
           {/* Sort */}
@@ -208,19 +208,19 @@ export default function TasksPage() {
             <select
               value={filters.sortBy}
               onChange={(e) => setFilters((prev) => ({ ...prev, sortBy: e.target.value as SortOption }))}
-              className="appearance-none pl-3 pr-7 py-1.5 bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium rounded-lg focus:outline-none focus:border-sky-500 cursor-pointer"
+              className="appearance-none pl-3 pr-7 py-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-medium rounded-lg focus:outline-none focus:border-sky-500 cursor-pointer"
             >
               {SORT_OPTIONS.map((o) => (
-                <option key={o.value} value={o.value}>{o.label}</option>
+                <option key={o.value} value={o.value} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">{o.label}</option>
               ))}
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-500 pointer-events-none" />
+            <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 dark:text-slate-500 pointer-events-none" />
           </div>
 
           {hasActiveFilters && (
             <button
               onClick={clearFilters}
-              className="flex items-center gap-1 text-xs text-slate-400 hover:text-rose-400 ml-1 transition-colors"
+              className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 ml-1 transition-colors"
             >
               <X className="w-3 h-3" /> Clear
             </button>
@@ -228,7 +228,7 @@ export default function TasksPage() {
 
           <button
             onClick={() => fetchTasks(filters)}
-            className="ml-auto flex items-center gap-1.5 text-xs text-slate-500 hover:text-sky-400 transition-colors"
+            className="ml-auto flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
             Refresh
@@ -238,7 +238,7 @@ export default function TasksPage() {
 
       {/* Error */}
       {error && (
-        <div className="mb-4 bg-rose-500/10 border border-rose-500/20 rounded-xl px-4 py-3 text-rose-300 text-sm flex items-center gap-2">
+        <div className="mb-4 bg-rose-500/10 border border-rose-500/20 rounded-xl px-4 py-3 text-rose-700 dark:text-rose-300 text-sm flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 shrink-0" />
           {error}
         </div>
@@ -248,32 +248,32 @@ export default function TasksPage() {
       {isLoading ? (
         <div className="space-y-3">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-slate-900 border border-slate-800 rounded-xl p-4 animate-pulse">
+            <div key={i} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 animate-pulse">
               <div className="flex items-center gap-3">
-                <div className="h-4 bg-slate-800 rounded w-1/3" />
-                <div className="h-4 bg-slate-800 rounded w-16" />
-                <div className="h-4 bg-slate-800 rounded w-20 ml-auto" />
+                <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded w-1/3" />
+                <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded w-16" />
+                <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded w-20 ml-auto" />
               </div>
             </div>
           ))}
         </div>
       ) : tasks.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <div className="w-14 h-14 mb-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center">
-            <ListTodo className="w-6 h-6 text-slate-600" />
+          <div className="w-14 h-14 mb-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center shadow-sm">
+            <ListTodo className="w-6 h-6 text-slate-400 dark:text-slate-600" />
           </div>
-          <h3 className="text-white font-semibold mb-1">No tasks found</h3>
-          <p className="text-slate-500 text-sm max-w-xs mb-5">
+          <h3 className="text-slate-900 dark:text-white font-semibold mb-1">No tasks found</h3>
+          <p className="text-slate-500 dark:text-slate-400 text-sm max-w-xs mb-5">
             {hasActiveFilters ? 'Try adjusting your search or filters.' : 'Get started by creating your first task!'}
           </p>
           {hasActiveFilters ? (
-            <button onClick={clearFilters} className="text-sky-400 text-sm hover:underline">
+            <button onClick={clearFilters} className="text-sky-600 dark:text-sky-400 text-sm hover:underline font-medium">
               Clear filters
             </button>
           ) : (
             <button
               onClick={handleOpenCreate}
-              className="px-4 py-2 bg-sky-500/20 hover:bg-sky-500/30 text-sky-400 border border-sky-500/20 text-sm font-medium rounded-xl transition-all"
+              className="px-4 py-2 bg-sky-500/10 dark:bg-sky-500/20 hover:bg-sky-500/20 dark:hover:bg-sky-500/30 text-sky-600 dark:text-sky-400 border border-sky-500/20 text-sm font-medium rounded-xl transition-all"
             >
               + Create Task
             </button>
@@ -282,30 +282,30 @@ export default function TasksPage() {
       ) : (
         <>
           {/* Desktop Table */}
-          <div className="hidden md:block bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+          <div className="hidden md:block bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm transition-colors">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-slate-800 bg-slate-950/50">
-                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Title</th>
-                  <th className="text-left px-4 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Priority</th>
-                  <th className="text-left px-4 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
-                  <th className="text-left px-4 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Due Date</th>
-                  <th className="text-right px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
+                <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/50">
+                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Title</th>
+                  <th className="text-left px-4 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Priority</th>
+                  <th className="text-left px-4 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                  <th className="text-left px-4 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Due Date</th>
+                  <th className="text-right px-5 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
                 {tasks.map((task) => (
-                  <tr key={task.id} className="group hover:bg-slate-800/30 transition-colors">
+                  <tr key={task.id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                     <td className="px-5 py-4">
                       <div>
-                        <p className={`font-medium text-sm ${isOverdue(task) ? 'text-rose-300' : 'text-white'}`}>
+                        <p className={`font-medium text-sm ${isOverdue(task) ? 'text-rose-600 dark:text-rose-300' : 'text-slate-900 dark:text-white'}`}>
                           {task.title}
                           {isOverdue(task) && (
-                            <span className="ml-2 text-xs text-rose-400 font-normal">overdue</span>
+                            <span className="ml-2 text-xs text-rose-500 dark:text-rose-400 font-normal">overdue</span>
                           )}
                         </p>
                         {task.description && (
-                          <p className="text-xs text-slate-500 mt-0.5 truncate max-w-xs">{task.description}</p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate max-w-xs">{task.description}</p>
                         )}
                       </div>
                     </td>
@@ -316,7 +316,7 @@ export default function TasksPage() {
                       <StatusBadge status={task.status} />
                     </td>
                     <td className="px-4 py-4">
-                      <div className={`flex items-center gap-1.5 text-xs ${isOverdue(task) ? 'text-rose-400' : 'text-slate-400'}`}>
+                      <div className={`flex items-center gap-1.5 text-xs ${isOverdue(task) ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500 dark:text-slate-400'}`}>
                         <CalendarDays className="w-3.5 h-3.5" />
                         {formatDate(task.due_date)}
                       </div>
@@ -325,14 +325,14 @@ export default function TasksPage() {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => handleOpenEdit(task)}
-                          className="p-2 text-slate-500 hover:text-sky-400 hover:bg-sky-500/10 rounded-lg transition-all"
+                          className="p-2 text-slate-400 dark:text-slate-500 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-500/10 rounded-lg transition-all"
                           title="Edit task"
                         >
                           <Pencil className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => handleOpenDelete(task)}
-                          className="p-2 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all"
+                          className="p-2 text-slate-400 dark:text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all"
                           title="Delete task"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -350,34 +350,34 @@ export default function TasksPage() {
             {tasks.map((task) => (
               <div
                 key={task.id}
-                className={`bg-slate-900 border ${isOverdue(task) ? 'border-rose-500/30' : 'border-slate-800'} rounded-xl p-4`}
+                className={`bg-white dark:bg-slate-900 border ${isOverdue(task) ? 'border-rose-500/40 dark:border-rose-500/30' : 'border-slate-200 dark:border-slate-800'} rounded-xl p-4 shadow-sm`}
               >
                 <div className="flex items-start justify-between gap-3 mb-3">
-                  <p className={`font-semibold text-sm leading-snug ${isOverdue(task) ? 'text-rose-300' : 'text-white'}`}>
+                  <p className={`font-semibold text-sm leading-snug ${isOverdue(task) ? 'text-rose-600 dark:text-rose-300' : 'text-slate-900 dark:text-white'}`}>
                     {task.title}
                   </p>
                   <div className="flex items-center gap-1 shrink-0">
                     <button
                       onClick={() => handleOpenEdit(task)}
-                      className="p-1.5 text-slate-500 hover:text-sky-400 hover:bg-sky-500/10 rounded-lg transition-all"
+                      className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-500/10 rounded-lg transition-all"
                     >
                       <Pencil className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={() => handleOpenDelete(task)}
-                      className="p-1.5 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all"
+                      className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
                 {task.description && (
-                  <p className="text-xs text-slate-500 mb-3 line-clamp-2">{task.description}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 line-clamp-2">{task.description}</p>
                 )}
                 <div className="flex flex-wrap items-center gap-2">
                   <PriorityBadge priority={task.priority} />
                   <StatusBadge status={task.status} />
-                  <span className={`flex items-center gap-1 text-xs ml-auto ${isOverdue(task) ? 'text-rose-400' : 'text-slate-500'}`}>
+                  <span className={`flex items-center gap-1 text-xs ml-auto ${isOverdue(task) ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500 dark:text-slate-400'}`}>
                     <CalendarDays className="w-3 h-3" />
                     {formatDate(task.due_date)}
                   </span>
