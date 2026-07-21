@@ -4,12 +4,23 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User } from '../types/auth';
 import { authService } from '../services/authService';
 
+// Decode JWT payload to check expiry (no library needed)
+const isTokenExpired = (token: string): boolean => {
+  try {
+    const base64Payload = token.split('.')[1];
+    const payload = JSON.parse(atob(base64Payload));
+    return payload.exp * 1000 < Date.now();
+  } catch {
+    return true;
+  }
+};
+
 interface AuthContextType {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string, password?: string) => Promise<{ success: boolean; message: string; errors?: any }>;
+  login: (email: string, password?: string) => Promise<{ success: boolean; message: string; errors?: Record<string, string> }>;
   logout: () => void;
 }
 
@@ -25,6 +36,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const storedUser = localStorage.getItem('user');
 
     if (storedToken && storedUser) {
+      // Validate token expiry before trusting it
+      if (isTokenExpired(storedToken)) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setIsLoading(false);
+        return;
+      }
       try {
         setToken(storedToken);
         setUser(JSON.parse(storedUser));
