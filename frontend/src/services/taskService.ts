@@ -1,6 +1,6 @@
-import { fetchApi } from './api';
-import { Task, DashboardStats, TaskFormData, TaskFilters } from '../types/task';
-import { ApiResponse } from '../types/auth';
+import { fetchApi } from '@/services/api';
+import { Task, DashboardStats, TaskFormData, TaskFilters } from '@/types/task';
+import { ApiResponse } from '@/types/auth';
 
 export const taskService = {
   async getStats(): Promise<ApiResponse<DashboardStats>> {

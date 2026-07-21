@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { taskService } from '../../services/taskService';
-import { DashboardStats } from '../../types/task';
+import { taskService } from '@/services/taskService';
+import { DashboardStats } from '@/types/task';
 import {
   ClipboardList,
   Clock,
