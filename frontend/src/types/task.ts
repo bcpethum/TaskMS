@@ -1,6 +1,6 @@
 export type PriorityLevel = 'Low' | 'Medium' | 'High';
 export type TaskStatus = 'Pending' | 'In Progress' | 'Completed';
-export type SortOption = 'newest' | 'oldest' | 'due_date';
+export type SortOption = 'newest' | 'oldest' | 'due_date_asc' | 'due_date_desc';
 
 export interface Task {
   id: number;

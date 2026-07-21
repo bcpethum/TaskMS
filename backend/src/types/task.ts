@@ -35,5 +35,5 @@ export interface TaskFilters {
   search?: string;
   status?: TaskStatus;
   priority?: PriorityLevel;
-  sortBy?: 'newest' | 'oldest' | 'due_date';
+  sortBy?: 'newest' | 'oldest' | 'due_date' | 'due_date_asc' | 'due_date_desc';
 }

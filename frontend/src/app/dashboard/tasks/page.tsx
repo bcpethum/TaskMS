@@ -17,7 +17,8 @@ const PRIORITY_OPTIONS: (PriorityLevel | '')[] = ['', 'Low', 'Medium', 'High'];
 const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: 'newest', label: 'Newest First' },
   { value: 'oldest', label: 'Oldest First' },
-  { value: 'due_date', label: 'Due Date' },
+  { value: 'due_date_asc', label: 'Due Date (Earliest)' },
+  { value: 'due_date_desc', label: 'Due Date (Latest)' },
 ];
 
 const formatDate = (dateStr: string) => {
