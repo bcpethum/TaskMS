@@ -27,7 +27,7 @@ const emptyForm: TaskFormData = {
 
 export default function TaskModal({ isOpen, mode, task, onClose, onSave }: TaskModalProps) {
   const [form, setForm] = useState<TaskFormData>(emptyForm);
-  const [errors, setErrors] = useState<Partial<TaskFormData>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof TaskFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Populate form when editing
@@ -49,7 +49,7 @@ export default function TaskModal({ isOpen, mode, task, onClose, onSave }: TaskM
   if (!isOpen) return null;
 
   const validate = (): boolean => {
-    const newErrors: Partial<TaskFormData> = {};
+    const newErrors: Partial<Record<keyof TaskFormData, string>> = {};
     if (!form.title.trim()) newErrors.title = 'Title is required';
     if (!form.priority) newErrors.priority = 'Priority is required';
     if (!form.status) newErrors.status = 'Status is required';
@@ -81,18 +81,18 @@ export default function TaskModal({ isOpen, mode, task, onClose, onSave }: TaskM
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-sm transition-opacity" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto transition-colors">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-800">
-          <h2 className="text-base font-bold text-white">
+        <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <h2 className="text-base font-bold text-slate-900 dark:text-white">
             {mode === 'create' ? '+ New Task' : 'Edit Task'}
           </h2>
           <button
             onClick={onClose}
-            className="text-slate-500 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800 transition-all"
+            className="text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
           >
             <X className="w-4 h-4" />
           </button>
@@ -102,86 +102,86 @@ export default function TaskModal({ isOpen, mode, task, onClose, onSave }: TaskM
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {/* Title */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-              Title <span className="text-rose-400">*</span>
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+              Title <span className="text-rose-500 dark:text-rose-400">*</span>
             </label>
             <input
               type="text"
               placeholder="Enter task title..."
               {...field('title')}
-              className={`w-full px-4 py-2.5 bg-slate-950/60 border ${
-                errors.title ? 'border-rose-500/80' : 'border-slate-800 focus:border-sky-500'
-              } rounded-xl text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all`}
+              className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950/60 border ${
+                errors.title ? 'border-rose-500/80' : 'border-slate-200 dark:border-slate-800 focus:border-sky-500'
+              } rounded-xl text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all`}
             />
-            {errors.title && <p className="mt-1.5 text-xs text-rose-400">{errors.title}</p>}
+            {errors.title && <p className="mt-1.5 text-xs text-rose-500 dark:text-rose-400">{errors.title}</p>}
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-              Description <span className="text-slate-600">(optional)</span>
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+              Description <span className="text-slate-400 dark:text-slate-600">(optional)</span>
             </label>
             <textarea
               placeholder="Add a description..."
               rows={3}
               {...field('description')}
-              className="w-full px-4 py-2.5 bg-slate-950/60 border border-slate-800 focus:border-sky-500 rounded-xl text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all resize-none"
+              className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 focus:border-sky-500 rounded-xl text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all resize-none"
             />
           </div>
 
           {/* Priority & Status - side by side */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                Priority <span className="text-rose-400">*</span>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                Priority <span className="text-rose-500 dark:text-rose-400">*</span>
               </label>
               <select
                 {...field('priority')}
-                className={`w-full px-4 py-2.5 bg-slate-950/60 border ${
-                  errors.priority ? 'border-rose-500/80' : 'border-slate-800 focus:border-sky-500'
-                } rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all appearance-none`}
+                className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950/60 border ${
+                  errors.priority ? 'border-rose-500/80' : 'border-slate-200 dark:border-slate-800 focus:border-sky-500'
+                } rounded-xl text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all appearance-none`}
               >
-                <option value="">Select...</option>
+                <option value="" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">Select...</option>
                 {PRIORITIES.map((p) => (
-                  <option key={p} value={p}>{p}</option>
+                  <option key={p} value={p} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">{p}</option>
                 ))}
               </select>
-              {errors.priority && <p className="mt-1.5 text-xs text-rose-400">{errors.priority}</p>}
+              {errors.priority && <p className="mt-1.5 text-xs text-rose-500 dark:text-rose-400">{errors.priority}</p>}
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                Status <span className="text-rose-400">*</span>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                Status <span className="text-rose-500 dark:text-rose-400">*</span>
               </label>
               <select
                 {...field('status')}
-                className={`w-full px-4 py-2.5 bg-slate-950/60 border ${
-                  errors.status ? 'border-rose-500/80' : 'border-slate-800 focus:border-sky-500'
-                } rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all appearance-none`}
+                className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950/60 border ${
+                  errors.status ? 'border-rose-500/80' : 'border-slate-200 dark:border-slate-800 focus:border-sky-500'
+                } rounded-xl text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all appearance-none`}
               >
-                <option value="">Select...</option>
+                <option value="" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">Select...</option>
                 {STATUSES.map((s) => (
-                  <option key={s} value={s}>{s}</option>
+                  <option key={s} value={s} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">{s}</option>
                 ))}
               </select>
-              {errors.status && <p className="mt-1.5 text-xs text-rose-400">{errors.status}</p>}
+              {errors.status && <p className="mt-1.5 text-xs text-rose-500 dark:text-rose-400">{errors.status}</p>}
             </div>
           </div>
 
           {/* Due Date */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-              Due Date <span className="text-rose-400">*</span>
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+              Due Date <span className="text-rose-500 dark:text-rose-400">*</span>
             </label>
             <input
               type="date"
               min={form.status === 'Completed' ? undefined : today}
               {...field('due_date')}
-              className={`w-full px-4 py-2.5 bg-slate-950/60 border ${
-                errors.due_date ? 'border-rose-500/80' : 'border-slate-800 focus:border-sky-500'
-              } rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all [color-scheme:dark]`}
+              className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950/60 border ${
+                errors.due_date ? 'border-rose-500/80' : 'border-slate-200 dark:border-slate-800 focus:border-sky-500'
+              } rounded-xl text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all dark:[color-scheme:dark]`}
             />
-            {errors.due_date && <p className="mt-1.5 text-xs text-rose-400">{errors.due_date}</p>}
+            {errors.due_date && <p className="mt-1.5 text-xs text-rose-500 dark:text-rose-400">{errors.due_date}</p>}
           </div>
 
           {/* Actions */}
@@ -189,7 +189,7 @@ export default function TaskModal({ isOpen, mode, task, onClose, onSave }: TaskM
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium rounded-xl transition-all"
+              className="flex-1 py-2.5 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium rounded-xl transition-all"
             >
               Cancel
             </button>

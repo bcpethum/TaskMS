@@ -24,17 +24,17 @@ export default function DeleteConfirmModal({ isOpen, task, onClose, onConfirm }:
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-sm bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-6">
+      <div className="absolute inset-0 bg-slate-950/60 dark:bg-black/70 backdrop-blur-sm transition-opacity" onClick={onClose} />
+      <div className="relative w-full max-w-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-6 transition-colors">
         <div className="flex flex-col items-center text-center gap-4">
           <div className="w-12 h-12 rounded-full bg-rose-500/15 border border-rose-500/20 flex items-center justify-center">
-            <AlertTriangle className="w-6 h-6 text-rose-400" />
+            <AlertTriangle className="w-6 h-6 text-rose-500 dark:text-rose-400" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-white mb-1">Delete Task</h3>
-            <p className="text-slate-400 text-sm">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">Delete Task</h3>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
               Are you sure you want to delete{' '}
-              <span className="text-white font-medium">"{task.title}"</span>?
+              <span className="text-slate-900 dark:text-white font-medium">"{task.title}"</span>?
               This action cannot be undone.
             </p>
           </div>
@@ -42,7 +42,7 @@ export default function DeleteConfirmModal({ isOpen, task, onClose, onConfirm }:
             <button
               onClick={onClose}
               disabled={isDeleting}
-              className="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium rounded-xl transition-all disabled:opacity-50"
+              className="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium rounded-xl transition-all disabled:opacity-50"
             >
               Cancel
             </button>

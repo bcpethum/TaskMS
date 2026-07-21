@@ -3,15 +3,15 @@ import { PriorityLevel } from '@/types/task';
 const config: Record<PriorityLevel, { label: string; className: string }> = {
   High: {
     label: 'High',
-    className: 'bg-rose-500/15 text-rose-400 border border-rose-500/20',
+    className: 'bg-rose-500/10 dark:bg-rose-500/15 text-rose-700 dark:text-rose-400 border border-rose-500/30 dark:border-rose-500/20',
   },
   Medium: {
     label: 'Medium',
-    className: 'bg-amber-500/15 text-amber-400 border border-amber-500/20',
+    className: 'bg-amber-500/10 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30 dark:border-amber-500/20',
   },
   Low: {
     label: 'Low',
-    className: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20',
+    className: 'bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 dark:border-emerald-500/20',
   },
 };
 
