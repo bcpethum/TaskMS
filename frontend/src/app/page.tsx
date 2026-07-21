@@ -1,17 +1,29 @@
-import React from 'react';
+'use client';
 
-export default function HomePage() {
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/AuthContext';
+
+export default function RootPage() {
+  const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (isAuthenticated) {
+        router.push('/dashboard');
+      } else {
+        router.push('/login');
+      }
+    }
+  }, [isAuthenticated, isLoading, router]);
+
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-slate-900 text-white">
-      <div className="max-w-md w-full bg-slate-800 border border-slate-700 rounded-xl p-8 text-center shadow-xl">
-        <h1 className="text-3xl font-bold mb-4 text-sky-400">Task Management App</h1>
-        <p className="text-slate-300 text-sm mb-6">
-          Full-Stack Next.js & Node.js Express Task Management System
-        </p>
-        <div className="inline-block px-4 py-2 bg-slate-700 text-sky-300 rounded-lg text-xs font-mono">
-          Initial Setup Ready
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-slate-950 text-white">
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-10 h-10 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-slate-400 text-sm">Redirecting...</p>
       </div>
-    </main>
+    </div>
   );
 }
