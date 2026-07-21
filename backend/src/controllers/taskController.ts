@@ -57,12 +57,14 @@ export const getTasks = async (req: Request, res: Response) => {
       paramIndex++;
     }
 
-    const orderClause =
-      sortBy === 'oldest'
-        ? 'created_at ASC'
-        : sortBy === 'due_date'
-        ? 'due_date ASC'
-        : 'created_at DESC'; // default: newest
+    let orderClause = 'created_at DESC'; // default: newest
+    if (sortBy === 'oldest') {
+      orderClause = 'created_at ASC';
+    } else if (sortBy === 'due_date' || sortBy === 'due_date_asc') {
+      orderClause = 'due_date ASC';
+    } else if (sortBy === 'due_date_desc') {
+      orderClause = 'due_date DESC';
+    }
 
     const query = `
       SELECT id, title, description, priority, status, due_date, created_at, updated_at
