@@ -23,6 +23,14 @@ export async function fetchApi<T>(
     const data: ApiResponse<T> = await response.json();
 
     if (!response.ok) {
+      if (response.status === 401 && typeof window !== 'undefined') {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        // Force redirect to login page if unauthorized
+        if (!window.location.pathname.startsWith('/login')) {
+          window.location.href = '/login';
+        }
+      }
       return {
         success: false,
         message: data.message || 'An error occurred during request',
