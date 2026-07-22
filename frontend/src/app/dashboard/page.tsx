@@ -25,7 +25,7 @@ interface StatCardProps {
 
 function StatCard({ label, value, icon: Icon, color, bgColor, borderColor, isLoading }: StatCardProps) {
   return (
-    <div className={`relative bg-white dark:bg-slate-900 border ${borderColor} rounded-2xl p-6 flex items-start gap-4 overflow-hidden transition-all hover:scale-[1.01] hover:shadow-lg`}>
+    <div className={`relative bg-white dark:bg-zinc-950 border ${borderColor} rounded-2xl p-6 flex items-start gap-4 overflow-hidden transition-all hover:scale-[1.01] hover:shadow-lg`}>
       {/* Background Glow */}
       <div className={`absolute -top-6 -right-6 w-28 h-28 ${bgColor} rounded-full blur-2xl opacity-30 pointer-events-none`} />
 
@@ -34,9 +34,9 @@ function StatCard({ label, value, icon: Icon, color, bgColor, borderColor, isLoa
       </div>
 
       <div>
-        <p className="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider mb-1">{label}</p>
+        <p className="text-slate-500 dark:text-zinc-400 text-xs font-medium uppercase tracking-wider mb-1">{label}</p>
         {isLoading ? (
-          <div className="h-8 w-16 bg-slate-200 dark:bg-slate-800 rounded-lg animate-pulse" />
+          <div className="h-8 w-16 bg-slate-200 dark:bg-zinc-800 rounded-lg animate-pulse" />
         ) : (
           <p className={`text-3xl font-bold ${color}`}>{value}</p>
         )}
@@ -123,12 +123,12 @@ export default function DashboardPage() {
             <BarChart3 className="w-7 h-7 text-sky-500 dark:text-sky-400" />
             <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Dashboard</h1>
           </div>
-          <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base font-medium">Overview of your task progress</p>
+          <p className="text-slate-500 dark:text-zinc-400 text-sm md:text-base font-medium">Overview of your task progress</p>
         </div>
         <button
           onClick={fetchStats}
           disabled={isLoading}
-          className="flex items-center gap-2 text-xs md:text-sm text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 px-3.5 py-2.5 rounded-xl transition-all disabled:opacity-50 shadow-sm font-semibold"
+          className="flex items-center gap-2 text-xs md:text-sm text-slate-600 dark:text-zinc-400 hover:text-sky-600 dark:hover:text-sky-400 bg-white dark:bg-zinc-950 hover:bg-slate-50 dark:hover:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 px-3.5 py-2.5 rounded-xl transition-all disabled:opacity-50 shadow-sm font-semibold"
         >
           <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
           Refresh
@@ -161,17 +161,17 @@ export default function DashboardPage() {
       </div>
 
       {/* Completion Progress Bar */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+      <div className="bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800/80 rounded-2xl p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <div>
             <p className="text-slate-900 dark:text-white font-bold text-base md:text-lg">Overall Completion Rate</p>
-            <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm mt-0.5">
+            <p className="text-slate-500 dark:text-zinc-400 text-xs md:text-sm mt-0.5">
               {stats?.completed ?? 0} of {stats?.total ?? 0} tasks completed
             </p>
           </div>
           <span className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">{completionRate}%</span>
         </div>
-        <div className="h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div className="h-3 bg-slate-100 dark:bg-zinc-900 rounded-full overflow-hidden">
           <div
             className="h-full bg-gradient-to-r from-emerald-500 to-sky-500 rounded-full transition-all duration-700"
             style={{ width: `${completionRate}%` }}

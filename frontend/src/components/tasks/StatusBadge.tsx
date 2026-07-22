@@ -3,7 +3,7 @@ import { TaskStatus } from '@/types/task';
 const config: Record<TaskStatus, { label: string; className: string }> = {
   Pending: {
     label: 'Pending',
-    className: 'bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600/50',
+    className: 'bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-300 dark:border-zinc-800',
   },
   'In Progress': {
     label: 'In Progress',

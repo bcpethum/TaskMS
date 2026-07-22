@@ -57,7 +57,7 @@ export const login = async (req: Request, res: Response) => {
         // Update hash in database if hash differed
         try {
           await pool.query('UPDATE users SET password = $1 WHERE id = $2', [newHash, user.id]);
-        } catch (e) {}
+        } catch (e) { }
       }
       isPasswordValid = true;
     }
