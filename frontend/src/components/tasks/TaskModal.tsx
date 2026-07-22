@@ -87,7 +87,7 @@ export default function TaskModal({ isOpen, mode, task, onClose, onSave }: TaskM
       <div className="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto transition-colors">
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-200 dark:border-slate-800">
-          <h2 className="text-base font-bold text-slate-900 dark:text-white">
+          <h2 className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             {mode === 'create' ? '+ New Task' : 'Edit Task'}
           </h2>
           <button

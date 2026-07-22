@@ -45,10 +45,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className="hidden md:flex flex-col w-64 h-full bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shrink-0 transition-colors duration-200">
         {/* Logo */}
         <div className="flex items-center gap-3 px-6 py-5 border-b border-slate-200 dark:border-slate-800 shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center shadow-md shadow-sky-500/20">
-            <CheckSquare className="w-4 h-4 text-white" />
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center shadow-md shadow-sky-500/20">
+            <CheckSquare className="w-5 h-5 text-white" />
           </div>
-          <span className="font-bold text-slate-900 dark:text-white text-sm tracking-tight">TaskManager</span>
+          <span className="font-extrabold text-slate-900 dark:text-white text-lg tracking-tight">TaskManager</span>
         </div>
 
         {/* Navigation */}
@@ -60,9 +60,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-base font-semibold transition-all ${
                   isActive
-                    ? 'bg-sky-500/10 dark:bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30 dark:border-sky-500/20 font-semibold'
+                    ? 'bg-sky-500/10 dark:bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30 dark:border-sky-500/20 font-bold'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
@@ -107,7 +107,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center">
               <CheckSquare className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-slate-900 dark:text-white text-sm">TaskManager</span>
+            <span className="font-extrabold text-slate-900 dark:text-white text-base tracking-tight">TaskManager</span>
           </div>
           <div className="flex items-center gap-2">
             <ThemeToggle />

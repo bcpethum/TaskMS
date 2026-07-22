@@ -31,7 +31,7 @@ export default function DeleteConfirmModal({ isOpen, task, onClose, onConfirm }:
             <AlertTriangle className="w-6 h-6 text-rose-500 dark:text-rose-400" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">Delete Task</h3>
+            <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-1 tracking-tight">Delete Task</h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm">
               Are you sure you want to delete{' '}
               <span className="text-slate-900 dark:text-white font-medium">"{task.title}"</span>?
