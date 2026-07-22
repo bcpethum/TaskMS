@@ -119,18 +119,18 @@ export default function DashboardPage() {
       {/* Page Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <BarChart3 className="w-5 h-5 text-sky-500 dark:text-sky-400" />
-            <h1 className="text-xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
+          <div className="flex items-center gap-2.5 mb-1">
+            <BarChart3 className="w-7 h-7 text-sky-500 dark:text-sky-400" />
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Dashboard</h1>
           </div>
-          <p className="text-slate-500 dark:text-slate-400 text-sm">Overview of your task progress</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base font-medium">Overview of your task progress</p>
         </div>
         <button
           onClick={fetchStats}
           disabled={isLoading}
-          className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl transition-all disabled:opacity-50 shadow-sm"
+          className="flex items-center gap-2 text-xs md:text-sm text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 px-3.5 py-2.5 rounded-xl transition-all disabled:opacity-50 shadow-sm font-semibold"
         >
-          <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
           Refresh
         </button>
       </div>
@@ -164,12 +164,12 @@ export default function DashboardPage() {
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="text-slate-900 dark:text-white font-semibold text-sm">Overall Completion Rate</p>
-            <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">
+            <p className="text-slate-900 dark:text-white font-bold text-base md:text-lg">Overall Completion Rate</p>
+            <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm mt-0.5">
               {stats?.completed ?? 0} of {stats?.total ?? 0} tasks completed
             </p>
           </div>
-          <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{completionRate}%</span>
+          <span className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">{completionRate}%</span>
         </div>
         <div className="h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
           <div
