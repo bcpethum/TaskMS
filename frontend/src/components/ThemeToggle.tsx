@@ -21,7 +21,7 @@ export default function ThemeToggle({ className = '', showLabel = false }: Theme
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 border ${
         isDark
-          ? 'bg-slate-800/80 hover:bg-slate-800 text-amber-300 border-slate-700/60 hover:border-amber-500/40'
+          ? 'bg-zinc-900 hover:bg-zinc-800 text-amber-300 border-zinc-800 hover:border-amber-500/40'
           : 'bg-slate-100 hover:bg-slate-200 text-sky-600 border-slate-300 hover:border-sky-400'
       } ${className}`}
     >
