@@ -139,8 +139,7 @@ export default function DashboardPage() {
       {error && (
         <div className="mb-6 bg-rose-500/10 border border-rose-500/20 rounded-xl px-4 py-3 text-rose-700 dark:text-rose-300 text-sm flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 shrink-0" />
-          {error} &mdash; Make sure your backend server is running on{' '}
-          <code className="text-rose-800 dark:text-rose-200 font-mono text-xs">http://localhost:5000</code>
+          {error}
         </div>
       )}
 

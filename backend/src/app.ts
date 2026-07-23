@@ -14,7 +14,16 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
-// Health Check
+// Health Check & Root welcome route
+app.get('/', (_req: Request, res: Response) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'Task Management API is running!',
+    health: '/api/health',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.get('/api/health', (_req: Request, res: Response) => {
   res.status(200).json({
     status: 'success',
