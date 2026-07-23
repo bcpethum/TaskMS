@@ -16,7 +16,7 @@ project/
 ## Technology Stack
 
 - **Frontend**: Next.js, React, TypeScript, Tailwind CSS, Lucide Icons
-- **Backend**: Node.js, Express.js, TypeScript, PostgreSQL (`pg`), JWT, BcryptJS, Zod
+- **Backend**: Node.js, Express.js, TypeScript, PostgreSQL (`pg`), JWT, , Zod
 - **Database**: PostgreSQL
 
 ## Getting Started

@@ -1,5 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { AuthProvider } from '@/context/AuthContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 export const metadata: Metadata = {
   title: 'Task Management System',
@@ -13,8 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-slate-50 antialiased text-slate-900">
-        {children}
+      <body className="min-h-screen bg-slate-50 dark:bg-black text-slate-900 dark:text-zinc-100 antialiased font-sans transition-colors duration-200">
+        <ThemeProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
