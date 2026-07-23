@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  trailingSlash: true, // Ensures routes generate /login/index.html for GitHub Pages
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/TaskMS' : '',
+  basePath: isProd ? '/TaskMS' : '',
+  assetPrefix: isProd ? '/TaskMS/' : '',
 };
 
 module.exports = nextConfig;
