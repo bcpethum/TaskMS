@@ -1,12 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export', // Enables static export for GitHub Pages
+  output: 'export',
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true,
   },
+  basePath: process.env.NODE_ENV === 'production' ? '/TaskMS' : '',
 };
 
 module.exports = nextConfig;
-
-
