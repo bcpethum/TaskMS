@@ -2,11 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  trailingSlash: true, // Ensures routes generate /login/index.html for GitHub Pages
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/TaskMS' : '',
+  basePath: '/TaskMS',
+  assetPrefix: '/TaskMS/',
 };
 
 module.exports = nextConfig;
