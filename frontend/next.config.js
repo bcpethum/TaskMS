@@ -1,16 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/login',
-        permanent: false,
-      },
-    ];
+  output: 'export', // Enables static export for GitHub Pages
+  images: {
+    unoptimized: true, // Required for static export
   },
 };
 
 module.exports = nextConfig;
+
 
